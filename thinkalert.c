@@ -58,7 +58,15 @@ int main(int argc, char *argv[]) {
                         if (!strcmp(argv[1], "on")) {
                                 noBlink = 1;
                                 switchOn = 1;
-                        } else if (!strcmp(argv[1], "off")) noBlink = 1;
+                        } else if (!strcmp(argv[1], "off")) {
+                          noBlink = 1;
+                        } else if (!strcmp(argv[1], "toggle")) {
+                          saveState();
+                          noBlink = 1;
+                          if (initialState) {
+                            switchOn = 0;
+                          } else switchOn = 1;
+                        }
                         else {
                                 times = atoi(argv[1]);
                                 onPeriod = DEFAULT_ON_PERIOD;
@@ -75,7 +83,7 @@ int main(int argc, char *argv[]) {
                         offPeriod = atoi(argv[3]);
                         break;
                 default:
-                        printf("thinkalert <on|off>\n");
+                        printf("thinkalert <on|off|toggle>\n");
                         printf("thinkalert <times> [interval (microseconds)]\n");
                         printf("thinkalert <times> <on period (microseconds)> "
                                 "<off period (microseconds)>\n");
