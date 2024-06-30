@@ -19,6 +19,7 @@
 #include <sys/param.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <grp.h>
 
 void blink(int, int, int);
 void dropPrivs();
